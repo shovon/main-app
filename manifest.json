@@ -1,0 +1,7 @@
+{
+  "name": "main",
+  "short_name": "main",
+  "description": "im  plementanslider-parent implementationtion",
+  "start_url": "/",
+  "display": "standalone"
+}

@@ -1,0 +1,102 @@
+[
+    {
+      "filepath": "C:\\Users\\Arefin\\Documents\\hysteresis-server\\GH\\hysteresis2.0.ghx",
+      "params": {
+        "param05": 6.0,
+        "param12": 3.0,
+        "param10": 0.0,
+        "param11": 29.0,
+        "param08": 0.0,
+        "param09": 3.0,
+        "param02": 6.0,
+        "param03": 3.0,
+        "param01": 20.0,
+        "param06": 7.0,
+        "param07": 0.0,
+        "param04": 20.0
+      },
+      "Output": {
+        "curves": 11,
+        "Top_points": 3
+      },
+      "cad_file": "1a42bca3-51b8-457e-ad55-fd5fb7133f1c.obj",
+      "image": "data/1a42bca3-51b8-457e-ad55-fd5fb7133f1c.bmp",
+      "uid": "1a42bca3-51b8-457e-ad55-fd5fb7133f1c",
+      "model_name": "Doguscan"
+    },
+    {
+      "filepath": "C:\\Users\\Arefin\\Documents\\hysteresis-server\\GH\\hysteresis2.0.ghx",
+      "params": {
+        "param05": 6.0,
+        "param12": 3.0,
+        "param10": 0.0,
+        "param11": 29.0,
+        "param08": 0.0,
+        "param09": 3.0,
+        "param02": 6.0,
+        "param03": 3.0,
+        "param01": 20.0,
+        "param06": 6.0,
+        "param07": 0.0,
+        "param04": 10.0
+      },
+      "Output": {
+        "curves": 11,
+        "Top_points": 3
+      },
+      "cad_file": "5d540cec-798b-4678-b689-a36e0c23553d.obj",
+      "image": "data/5d540cec-798b-4678-b689-a36e0c23553d.bmp",
+      "uid": "5d540cec-798b-4678-b689-a36e0c23553d",
+      "model_name": "Doguscan"
+    },
+    {
+      "filepath": "C:\\Users\\Arefin\\Documents\\hysteresis-server\\GH\\hysteresis2.0.ghx",
+      "params": {
+        "param05": 6.0,
+        "param12": 3.0,
+        "param10": 0.0,
+        "param11": 29.0,
+        "param08": 0.0,
+        "param09": 3.0,
+        "param02": 6.0,
+        "param03": 3.0,
+        "param01": 20.0,
+        "param06": 7.0,
+        "param07": 0.0,
+        "param04": 20.0
+      },
+      "Output": {
+        "curves": 11,
+        "Top_points": 3
+      },
+      "cad_file": "193f5f6f-7836-4075-b40f-e0258a1a240c.obj",
+      "image": "data/193f5f6f-7836-4075-b40f-e0258a1a240c.bmp",
+      "uid": "193f5f6f-7836-4075-b40f-e0258a1a240c",
+      "model_name": "Doguscan"
+    },
+    {
+      "filepath": "C:\\Users\\Arefin\\Documents\\hysteresis-server\\GH\\hysteresis2.0.ghx",
+      "params": {
+        "param05": 6.0,
+        "param12": 3.0,
+        "param10": 0.0,
+        "param11": 51.0,
+        "param08": 0.0,
+        "param09": 0.0,
+        "param02": 7.0,
+        "param03": 3.0,
+        "param01": 7.0,
+        "param06": 7.0,
+        "param07": 0.0,
+        "param04": 20.0
+      },
+      "Output": {
+        "curves": 11,
+        "Top_points": 3
+      },
+      "cad_file": "6629d3bd-183c-4895-84ff-ea6813295e28.obj",
+      "image": "data/6629d3bd-183c-4895-84ff-ea6813295e28.bmp",
+      "uid": "6629d3bd-183c-4895-84ff-ea6813295e28",
+      "model_name": "Doguscan"
+    }
+]

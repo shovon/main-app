@@ -1,0 +1,128 @@
+<link rel="import" href="parameters-path.html">
+<dom-module id="paths-container">
+  <template>
+    <style>
+      :host{
+        display: block;
+        width: 100%;
+        position: absolute;
+      }
+    </style>
+    <template is="dom-repeat" items="{{paths}}">
+      <parameters-path  height="{{height}}"
+                        positions="{{item.coordsBundle}}"
+                        selecting="{{item.selecting}}"
+                        selected="{{item.selected}}"
+                        ></parameters-path>
+    </template>
+  </template>
+  <script>
+    Polymer({
+      is:'paths-container',
+      properties:{
+        parametersCollection:{
+          type:Array
+        },
+        paths:{
+          type:Array,
+          notify:true,
+          value:function(){
+            return []
+          }
+        },
+        height:{
+          type:Number
+        },
+      },
+      observers:[
+        'parametersCollectionChanged(parametersCollection.*)'
+      ],
+      parametersCollectionChanged:function(cr){
+        if(cr.path.includes("left")){
+          var nameSubpath = cr.path.indexOf('.left');
+          var itempath = cr.path.substring(0, nameSubpath);
+          var item = this.get(itempath);
+          if(!this._pathsEmpty()){
+            if(!this._existUidPath(item.uid)){
+              this._addPath(item)
+            }else{
+              this._updateCoordsBundle(item)
+            }
+          }else{
+            this._addPath(item)
+          }
+        }
+        if(cr.path.includes("selected")){
+          var nameSubpath = cr.path.indexOf('.selected');
+          var itempath = cr.path.substring(0, nameSubpath);
+          var item = this.get(itempath);
+          if(!this._pathsEmpty()){
+            if(!this._existUidPath(item.uid)){
+              this._addPath(item)
+            }else{
+              this._updateCoordsBundle(item)
+            }
+          }else{
+            this._addPath(item)
+          }
+        }
+        if(cr.path.includes("selecting")){
+          var nameSubpath = cr.path.indexOf('.selecting');
+          var itempath = cr.path.substring(0, nameSubpath);
+          var item = this.get(itempath);
+          if(!this._pathsEmpty()){
+            if(!this._existUidPath(item.uid)){
+              this._addPath(item)
+            }else{
+              this._updateCoordsBundle(item)
+            }
+          }else{
+            this._addPath(item)
+          }
+        }
+      },
+      _getParametersPosition:function(item){
+        var coords = [];
+        for(var i=0;i<this.parametersCollection.length;i++){
+          for(var j=0;j<this.parametersCollection[i].collection.length;j++){
+            if(this.get('uid',this.parametersCollection[i].collection[j]) == item.uid){
+              coords.push(this.parametersCollection[i].collection[j].coordinates)
+            }
+          }
+        }
+        return coords
+      },
+      _existUidPath:function(uid){
+        for(var i=0;i<this.paths.length;i++){
+          if(this.get('uid',this.paths[i]) == uid)
+            return this.paths[i]
+        }
+        return null;
+      },
+      _pathsEmpty:function(){
+        return (this.paths.length == 0)
+      },
+      _updateCoordsBundle:function(item){
+        for(var i=0;i<this.paths.length;i++){
+          if(this.get('uid',this.paths[i]) == item.uid){
+            this.set('coordsBundle',this._getParametersPosition(item),this.paths[i])
+            this.notifyPath('paths.'+i+'.coordsBundle');
+            this.set('selected',item.selected,this.paths[i])
+            this.set('selecting',item.selecting,this.paths[i])
+            this.notifyPath('paths.'+i+'.selected');
+            this.notifyPath('paths.'+i+'.selecting');
+          }
+        }
+      },
+      _addPath:function(item){
+        var newPath = {
+          coordsBundle:this._getParametersPosition(item),
+          selected: item.selected,
+          selecting: item.selecting,
+          uid:item.uid
+        }
+        this.push('paths',newPath)
+      }
+    })
+  </script>
+</dom-module>

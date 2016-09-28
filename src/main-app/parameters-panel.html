@@ -1,0 +1,46 @@
+<link rel="import" href="paths-container.html">
+<link rel="import" href="back-ground.html">
+<link rel="import" href="parameters-container.html">
+<link rel="import" href="draggable-behavior.html">
+
+<dom-module id="parameters-panel">
+  <template>
+    <style>
+      :host{
+        display: block;
+        width: 300px;
+        position: absolute;
+      }
+    </style>
+    <back-ground height="[[height]]"></back-ground>
+
+    <paths-container
+      paths="{{paths}}"
+      height="{{height}}"
+      parameters-collection="{{parametersCollection}}">
+    </paths-container>
+
+    <parameters-container models="{{models}}"
+      on-set-height="setHeight"
+      parameters-collection="{{parametersCollection}}">
+    </parameters-container>
+
+  </template>
+  <script>
+    Polymer({
+      is:'parameters-panel',
+      behaviors: [ DraggableBehavior ],
+      properties:{
+        models: {
+          type: Array
+        },
+        height: {
+          type: Number,
+        }
+      },
+      setHeight: function(e) {
+        this.set('height', e.detail.height);
+      },
+    })
+  </script>
+</dom-module>

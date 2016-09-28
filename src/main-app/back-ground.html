@@ -1,0 +1,27 @@
+<dom-module id="back-ground">
+  <template>
+    <style>
+      :host{
+        display: block;
+        width: 100%;
+        position: absolute;
+        background: white;
+        z-index: 997;
+      }
+      :host > .background-panel{
+        background: white;
+      }
+    </style>
+    <div class='background-panel' style$="height: [[height]]px;"></div>
+  </template>
+  <script>
+    Polymer({
+      is:'back-ground',
+      properties:{
+        height:{
+          type:Number,
+        }
+      }
+    })
+  </script>
+</dom-module>

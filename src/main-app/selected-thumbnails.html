@@ -1,0 +1,30 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/model-viewer/model-viewer.html">
+
+<dom-module id="selected-thumbnails">
+  <template>
+    <style>
+      :host{
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: space-around;
+      }
+    </style>
+    <template  is="dom-repeat" items="{{models}}" filter="_isSelected" observe="selected">
+      <model-viewer item='{{item}}'></model-viewer>
+    </template>
+  </template>
+  <script>
+    Polymer({
+      is:'selected-thumbnails',
+      properties:{
+        models:{
+          type:Array
+        }
+      },
+      _isSelected:function(item){
+        return (item.selected == true)
+      }
+    })
+  </script>
+</dom-module>

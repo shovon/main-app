@@ -1,0 +1,25 @@
+{
+  "filepath": "C:\\Users\\Arefin\\Documents\\hysteresis-server\\GH\\hysteresis2.0.ghx", 
+  "params": {
+    "param05": 6.0, 
+    "param12": 3.0, 
+    "param10": 0.0, 
+    "param11": 29.0, 
+    "param08": 0.0, 
+    "param09": 3.0, 
+    "param02": 6.0, 
+    "param03": 3.0, 
+    "param01": 20.0, 
+    "param06": 7.0, 
+    "param07": 0.0, 
+    "param04": 20.0
+  }, 
+  "Output": {
+    "curves": 11, 
+    "Top_points": 3
+  }, 
+  "cad_file": "1a42bca3-51b8-457e-ad55-fd5fb7133f1c.obj", 
+  "image": "1a42bca3-51b8-457e-ad55-fd5fb7133f1c.bmp", 
+  "uid": "1a42bca3-51b8-457e-ad55-fd5fb7133f1c", 
+  "model_name": "Doguscan"
+}

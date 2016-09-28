@@ -1,0 +1,56 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/selectable-zone/selectable-zone.html">
+
+<link rel="import" href="models-provider.html">
+<link rel="import" href="parameters-panel.html">
+<link rel="import" href="selected-thumbnails.html">
+
+
+<dom-module id="main-app">
+  <template>
+    <style>
+      :host{
+        display: block;
+        height: 100vh;
+      }
+      .toolbar{
+        background: #3f51b5;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+      }
+      .toolbar .title{
+        display: inline-block;
+        padding: 20px 10px;
+        color: white;
+      }
+      .content{
+        background: #e5e5e5;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+      }
+    </style>
+      <models-provider  models="{{models}}"></models-provider>
+      <!--  Toolbar -->
+      <div class="toolbar">
+        <span class="title">Models</span>
+      </div>
+      <!--  Toolbar end -->
+
+      <!-- Content -->
+      <div class="content">
+        <template is="dom-if" if="{{models}}">
+          <parameters-panel models="{{models}}"></parameters-panel>
+          <!-- <parameters-container models="{{models}}"></parameters-container> -->
+        </template>
+        <selected-thumbnails models="{{models}}"></selected-thumbnails>
+        <selectable-zone models="{{models}}"></selectable-zone>
+      </div>
+      <!-- Content end -->
+  </template>
+  <script>
+      Polymer({
+          is: 'main-app'
+      });
+
+  </script>
+</dom-module>

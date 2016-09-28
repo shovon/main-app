@@ -1,0 +1,8 @@
+bower_components
+build
+.firebaserc
+firebase.json
+src/main-app/model-el.html
+src/main-app/model-viewer.html
+src/main-app/thumb-el.html
+src/main-app/zone-el.html

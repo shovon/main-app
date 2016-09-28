@@ -1,0 +1,47 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/iron-ajax/iron-ajax.html">
+<link rel="import" href="../../bower_components/paper-spinner/paper-spinner.html">
+
+<dom-module id="models-provider">
+  <template>
+    <style>
+      .overlay{
+        position: absolute;
+        top:0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: #fff;
+      }
+    </style>
+    <iron-ajax
+         auto
+         url="../seed/objects.json"
+         handle-as="json"
+         last-response="{{models}}"
+         on-error="_handleError"
+         loading="{{isLoading}}"
+         debounce-duration="2000"
+         ></iron-ajax>
+    <div class="overlay" hidden$="{{!isLoading}}">
+        <paper-spinner active="true"></paper-spinner>
+    </div>
+  </template>
+  <script>
+    Polymer({
+      is:'models-provider',
+      properties:{
+        models:{
+          type:Array,
+          notify:true
+        }
+      },
+      _handleError:function(e){
+          console.log(e.detail.error);
+      },
+    })
+  </script>
+</dom-module>

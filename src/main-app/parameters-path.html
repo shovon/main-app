@@ -1,0 +1,60 @@
+<dom-module id="parameters-path">
+    <template>
+      <style>
+        :host{
+          visibility: hidden;
+          width: 100%;
+          position: absolute;
+          z-index: 998;
+        }
+        :host[selecting] > .path{
+          visibility: visible;
+          stroke:#1565C0;
+        }
+        :host[selected] > .path{
+          visibility: visible;
+          stroke: #FF9800;
+        }
+        :host[selected][selecting] > .path{
+          stroke: rgba(255,0,0,0.7);
+          stroke:#B71C1C;
+        }
+      </style>
+      <svg class='path' height$="{{height}}" >
+        <polyline points$="{{computePoints(positions.*)}}"
+        style="fill:none;stroke-width:3" />
+      </svg>
+    </template>
+    <script>
+      Polymer({
+        is:'parameters-path',
+        properties:{
+          positions:{
+            type:Array,
+            value:function(){
+              return [ ];
+            }
+          },
+          selecting:{
+            type:Boolean,
+            reflectToAttribute: true
+          },
+          selected:{
+            type:Boolean,
+            reflectToAttribute: true
+          },
+          height:{
+            type:Number
+          },
+        },
+        computePoints:function(cr){
+          var offset = 35;
+          var _points = '';
+          for(var i=0;i<this.positions.length;i++){
+            _points += (this.positions[i].left+offset) + ',' + this.positions[i].top + ' '
+          }
+          return _points;
+        }
+      })
+    </script>
+  </dom-module>
