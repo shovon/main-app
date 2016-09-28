@@ -1,0 +1,148 @@
+<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../thumb-nail/thumb-nail.html">
+
+<dom-module id="selectable-zone">
+  <template>
+    <style>
+      :host {
+        flex: 1;
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: space-around;
+      }
+      :host > div.selector{
+        position: absolute;
+        background: rgba(0,0,255,0.3);
+      }
+    </style>
+    <!-- <content></content> -->
+    <template is="dom-repeat" items="{{models}}" as="model">
+      <thumb-nail model='{{model}}'
+                  selected="{{model.selected}}"
+                  selecting="{{model.selecting}}"
+                  selectable
+                  on-deselect-all="_deselectAll"
+                  ></thumb-nail>
+    </template>
+  </template>
+
+  <script>
+    Polymer({
+      is: 'selectable-zone',
+      properties: {
+        models:{
+          type:Array
+        },
+        _startX:{
+            type:Number,
+            value:0
+          },
+          _startY:{
+            type:Number,
+            value:0
+          }
+      },
+      listeners: {
+        mousedown: '_handleDown'
+      },
+      _handleDown:function(e){
+        e.preventDefault();
+        this._startX = e.pageX;
+        this._startY = e.pageY;
+        var selector = document.createElement('div');
+        selector.id = "boxselector";
+        selector.classList.add('selector');
+        Polymer.dom(this.root).appendChild(selector);
+        Polymer.dom.flush();
+        this.listen(this, 'mousemove', '_handleMove');
+        this.listen(this, 'mouseup', '_handleUp');
+      },
+      _handleMove:function(e){
+        e.preventDefault();
+        var endY = e.pageY;
+        var endX = e.pageX;
+        var box = this._createBoxSelector(this._startX,this._startY,endX,endY);
+        this._drawSeletor(this.$$('#boxselector'),box);
+        var thumbNails = this.querySelectorAll('thumb-nail[selectable]');
+        for(var i=0;i<thumbNails.length;i++){
+          var thumbNailBox = this._createBoxSelector(thumbNails[i].getBoundingClientRect().left,
+                                                       thumbNails[i].getBoundingClientRect().top,
+                                                       thumbNails[i].getBoundingClientRect().left+thumbNails[i].getBoundingClientRect().width,
+                                                       thumbNails[i].getBoundingClientRect().top+thumbNails[i].getBoundingClientRect().height);
+          var selectorBox = this._createBoxSelector(this._startX,this._startY,endX,endY);
+          if(this._overLap(thumbNailBox,selectorBox)){
+            if(!thumbNails[i].selecting)
+              thumbNails[i].set('selecting',true);
+          }else{
+            if(thumbNails[i].selecting)
+              thumbNails[i].set('selecting',false);
+          }
+        }
+      },
+      _handleUp:function(e){
+        e.preventDefault();
+        Polymer.dom(this.root).removeChild(this.$$('#boxselector'))
+        Polymer.dom.flush();
+        var selectorBox = this._createBoxSelector(this._startX,this._startY,e.pageX,e.pageY);
+        var thumbNails = this.querySelectorAll('thumb-nail[selectable]');
+        for(var i=0;i<thumbNails.length;i++){
+          var thumbNailBox = this._createBoxSelector(thumbNails[i].getBoundingClientRect().left,
+                                                       thumbNails[i].getBoundingClientRect().top,
+                                                       thumbNails[i].getBoundingClientRect().left+thumbNails[i].getBoundingClientRect().width,
+                                                       thumbNails[i].getBoundingClientRect().top+thumbNails[i].getBoundingClientRect().height);
+
+          if(!thumbNails[i].selecting){
+            thumbNails[i].set('selecting',false);
+            thumbNails[i].set('selected',false);
+          }else{
+            if (this._overLap(thumbNailBox,selectorBox)) {
+                if (!thumbNails[i].selected) {
+                  thumbNails[i].set('selected',true);
+                }
+            }
+          }
+          thumbNails[i].set('selecting',false);
+        }
+        this.unlisten(this, 'mousemove', '_handleMove');
+        this.unlisten(this, 'mouseup', '_handleUp');
+      },
+      _drawSeletor:function(selectorElement,box){
+        selectorElement.style.top = box.beginY+'px';
+        selectorElement.style.left = box.beginX+'px';
+        selectorElement.style.width = (box.endX - box.beginX)+'px';
+        selectorElement.style.height = (box.endY - box.beginY)+'px';
+      },
+      _createBoxSelector: function(startX,startY,endX,endY){
+        var box = {}
+        if(startX > endX){
+          box.beginX = endX;
+          box.endX = startX;
+        }else{
+          box.beginX = startX;
+          box.endX = endX;
+        }
+        if(startY > endY){
+          box.beginY = endY;
+          box.endY = startY;
+        }else{
+          box.beginY = startY;
+          box.endY = endY;
+        }
+        return box;
+      },
+      _overLap(thumbNail,selectorBox){
+        return (selectorBox.beginX <= thumbNail.endX && selectorBox.endX >= thumbNail.beginX) &&
+                  (selectorBox.beginY <= thumbNail.endY && selectorBox.endY>= thumbNail.beginY)
+      },
+      _deselectAll:function(){
+        var _thumbNails = this.querySelectorAll('thumb-nail[selectable]')
+        for(var i=0;i<_thumbNails.length;i++){
+          if(!_thumbNails[i].selecting && _thumbNails[i].selected){
+            _thumbNails[i].set('selecting',false);
+            _thumbNails[i].set('selected',false);
+          }
+        }
+      }
+    });
+  </script>
+</dom-module>

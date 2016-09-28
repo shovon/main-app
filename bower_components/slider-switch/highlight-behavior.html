@@ -1,0 +1,89 @@
+<script>
+    /* Custom behavior  */
+    HighlightBehavior = {
+      //Properties
+      /*
+       up:Boolean - Change slider's orientation
+       points:String -   svg figure
+       visibility:String - Manage whenever the value should be shown
+       selecting:Boolean - Shows when slider-switch is hovered
+      */
+        properties: {
+            up:{
+                type: Boolean,
+                observer: '_upChanged'
+            },
+            points: {
+                type: String,
+                value: "1,1 9,1 5,9"
+            },
+            visibility :{
+              type: String,
+              value: "none"
+            },
+            index:{
+              type:Number,
+              value:0
+            }
+        },
+        /*
+        listeners
+        mousedown: _handleSelected,
+        mouseenter: '_addHighlight',
+        mouseleave: '_removeHighlight'
+        */
+        listeners: {
+            mousedown: '_handleSelected',
+            mouseenter: '_addHighlight',
+            mouseleave: '_removeHighlight'
+        },
+        /**
+        * _handleSelected, Manage the selection functionality
+        * @param {event} e
+        */
+        _handleSelected:function(e){
+          if(this.selected){
+              if(e.ctrlKey){
+                  this.set('selected',false);
+                  this.visibility = "block";
+              }
+          }else{
+              if(!e.ctrlKey){
+                  var _children = Polymer.dom(Polymer.dom(this).parentNode).querySelectorAll("slider-switch");
+                  for (var i = 0; i < _children.length; i++) {
+                      if(_children[i].selected){
+                          _children[i].set('selected',false);
+                      }
+                }
+              }
+              this.set('selected',true);
+              this.visibility = "none";
+          }
+        },
+        /**
+        * _upChanged, Manage the slider-switch's orientation
+        * @param {Boolean} isUp
+        */
+        _upChanged:function(isUp){
+            if(isUp){
+              this.points = "1,9 9,9 5,1";
+              this.topPos = 12;
+            }
+
+        },
+        /**
+        * _addHighlight, set true the selecting property when the mouse is over the slider-switch
+        * @param {event} e
+        */
+        _addHighlight:function(e){
+          this.set('selecting',true);
+        },
+        /**
+        * _removeHighlight, set false the selecting property when the mouse isn't over the slider-switch
+        * @param {event} e
+        */
+        _removeHighlight:function(e){
+          this.set('selecting',false);
+        }
+    };
+</script>

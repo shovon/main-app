@@ -1,0 +1,29 @@
+{
+  "name": "slider-parent",
+  "description": "range slider prototype",
+  "main": "slider-parent.html",
+  "dependencies": {
+    "polymer": "Polymer/polymer#^1.4.0",
+    "slider-bar": "angelsalazar/slider-bar#master",
+    "slider-zone": "angelsalazar/slider-zone#master",
+    "slider-endpoint": "angelsalazar/slider-endpoint#master",
+    "slider-switch": "angelsalazar/slider-switch#master"
+  },
+  "devDependencies": {
+    "iron-component-page": "PolymerElements/iron-component-page#^1.0.0",
+    "iron-demo-helpers": "PolymerElements/iron-demo-helpers#^1.0.0",
+    "web-component-tester": "^4.0.0",
+    "webcomponentsjs": "webcomponents/webcomponentsjs#^0.7.0"
+  },
+  "homepage": "https://github.com/angelsalazar/slider-parent",
+  "version": "1.0.2",
+  "_release": "1.0.2",
+  "_resolution": {
+    "type": "version",
+    "tag": "v1.0.2",
+    "commit": "70c6e061d2c74d1674bc979d77d094fa6829e58a"
+  },
+  "_source": "git://github.com/angelsalazar/slider-parent.git",
+  "_target": "^1.0.2",
+  "_originalSource": "angelsalazar/slider-parent"
+}

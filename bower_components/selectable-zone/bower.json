@@ -1,0 +1,15 @@
+{
+  "name": "selectable-zone",
+  "description": "selectable-zone custom component",
+  "main": "selectable-zone.html",
+  "dependencies": {
+    "polymer": "Polymer/polymer#^1.4.0",
+    "thumb-nail": "angelsalazar/thumb-nail#master"
+  },
+  "devDependencies": {
+    "iron-component-page": "PolymerElements/iron-component-page#^1.0.0",
+    "iron-demo-helpers": "PolymerElements/iron-demo-helpers#^1.0.0",
+    "web-component-tester": "^4.0.0",
+    "webcomponentsjs": "webcomponents/webcomponentsjs#^0.7.0"
+  }
+}

@@ -1,0 +1,69 @@
+<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../iron-image/iron-image.html">
+
+<dom-module id="model-viewer">
+  <template>
+    <style>
+      :host{
+        display: flex;
+        padding: 10px;
+        margin: 5px;
+        background: white;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+      }
+      :host .model-features{
+        padding: 5px;
+      }
+      .uid{
+        display: flex;
+        flex-direction: column;
+      }
+      .uid > span{
+        font-size: 12px;
+      }
+      h1,h2,h3,h4,h5{
+        margin: 0;
+        padding: 0;
+      }
+      iron-image.model{
+        --iron-image-height:350px;
+        --iron-image-width:250px;
+      }
+    </style>
+    <iron-image
+      class="model"
+      src="[[item.image]]"
+    ></iron-image>
+    <div class="model-features">
+      <div><strong>Model name: </strong>{{item.model_name}}</div>
+      <div class="uid"><strong>uid:</strong><span>{{item.uid}}</span></div>
+      <div>
+        <h3>Parameters</h3>
+        <ul class="params-list">
+          <li class="param"><strong>Param05: </strong>{{item.params.param05}}</li>
+          <li class="param"><strong>Param12: </strong>{{item.params.param12}}</li>
+          <li class="param"><strong>Param10: </strong>{{item.params.param10}}</li>
+          <li class="param"><strong>Param11: </strong>{{item.params.param11}}</li>
+          <li class="param"><strong>Param08: </strong>{{item.params.param08}}</li>
+          <li class="param"><strong>Param09: </strong>{{item.params.param09}}</li>
+          <li class="param"><strong>Param02: </strong>{{item.params.param02}}</li>
+          <li class="param"><strong>Param03: </strong>{{item.params.param03}}</li>
+          <li class="param"><strong>Param01: </strong>{{item.params.param01}}</li>
+          <li class="param"><strong>Param06: </strong>{{item.params.param06}}</li>
+          <li class="param"><strong>Param07: </strong>{{item.params.param07}}</li>
+          <li class="param"><strong>Param04: </strong>{{item.params.param04}}</li>
+        </ul>
+      </div>
+    </div>
+  </template>
+  <script>
+    Polymer({
+      is:'model-viewer',
+      properties:{
+        item:{
+          type:Object
+        }
+      }
+    })
+  </script>
+</dom-module>

@@ -1,0 +1,26 @@
+{
+  "name": "model-viewer",
+  "description": "simple viewer element",
+  "main": "model-viewer.html",
+  "dependencies": {
+    "polymer": "Polymer/polymer#^1.4.0",
+    "iron-image": "PolymerElements/iron-image#^1.2.3"
+  },
+  "devDependencies": {
+    "iron-component-page": "PolymerElements/iron-component-page#^1.0.0",
+    "iron-demo-helpers": "PolymerElements/iron-demo-helpers#^1.0.0",
+    "web-component-tester": "^4.0.0",
+    "webcomponentsjs": "webcomponents/webcomponentsjs#^0.7.0"
+  },
+  "homepage": "https://github.com/angelsalazar/model-viewer",
+  "version": "0.0.3",
+  "_release": "0.0.3",
+  "_resolution": {
+    "type": "version",
+    "tag": "v0.0.3",
+    "commit": "55a9cc30ac0ed307081d9ccbdd5821840788c346"
+  },
+  "_source": "git://github.com/angelsalazar/model-viewer.git",
+  "_target": "^0.0.3",
+  "_originalSource": "angelsalazar/model-viewer"
+}

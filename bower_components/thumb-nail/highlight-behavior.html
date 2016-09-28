@@ -1,0 +1,54 @@
+<script>
+    HighlightBehavior = {
+      properties: {
+          selecting:{
+            type:Boolean,
+            value: false,
+            reflectToAttribute:true,
+            notify:true
+          },
+          selected:{
+            type:Boolean,
+            value:false,
+            reflectToAttribute:true,
+            notify:true
+          },
+          selectable:{
+            type:Boolean,
+            value:false,
+            reflectToAttribute: true
+          }
+      },
+      listeners: {
+        mouseenter: '_addHightlight',
+        mouseleave: '_removeHighlight',
+        mousedown: '_handleSelection'
+      },
+      _addHightlight:function(){
+        this.set('selecting', true);
+      },
+      _removeHighlight:function(){
+        this.set('selecting', false);
+      },
+      _handleSelection:function(e){
+        if(this.selectable){
+          //if thumb-nail clicked is selected
+          if(this.selected){
+            //if pressing CONTROL KEY
+            if(e.ctrlKey){
+              //if so, then thumb-nail clicked is deselected
+              this.set('selected',false);
+            }//end if e.crtlkey
+          }else{
+            //if not pressing CONTROL KEY when selecting, then deselect all the thumb-nail components
+            if(!e.ctrlKey){
+              this.fire('deselect-all');
+            }
+            this.set('selected',true);                                                                    //thumb-nail clicked is selected
+          }//end else
+          e.stopPropagation(); //Avoid drag multiselection to be fired
+        }//end if selectable
+
+      }
+    };
+</script>
